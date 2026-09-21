@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Create Account - AU App Finder</title>
+
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            font-family: 'Inter', Arial, sans-serif;
+
+            background: linear-gradient(
+                135deg,
+                #ffffff,
+                #f5f3ff
+            );
+
+            color: #11142d;
+        }
+
+        .signup-container {
+            width: 400px;
+            max-width: 90%;
+
+            padding: 35px;
+
+            background: white;
+
+            border-radius: 20px;
+
+            box-shadow:
+                0 15px 40px rgba(0, 0, 0, 0.10);
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .logo img {
+            width: 100px;
+            height: 70px;
+            object-fit: contain;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 8px;
+            font-size: 28px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 28px;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 7px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        input {
+            width: 100%;
+            padding: 13px;
+
+            border: 1px solid #ddd;
+            border-radius: 10px;
+
+            font-size: 14px;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #6545d8;
+        }
+
+        .signup-button {
+            width: 100%;
+            padding: 13px;
+
+            border: none;
+            border-radius: 10px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #6545d8,
+                    #8b5cf6
+                );
+
+            color: white;
+
+            font-size: 16px;
+            font-weight: 600;
+
+            cursor: pointer;
+
+            margin-top: 8px;
+        }
+
+        .signup-button:hover {
+            transform: translateY(-1px);
+        }
+
+        .back {
+            display: block;
+
+            text-align: center;
+
+            margin-top: 20px;
+
+            color: #6545d8;
+
+            text-decoration: none;
+
+            font-size: 14px;
+        }
+
+        .back:hover {
+            text-decoration: underline;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+
+    <div class="signup-container">
+
+
+        
+
+        <div class="logo">
+
+            <img
+                src="au.png"
+                alt="AU App Finder"
+            >
+
+        </div>
+
+
+       
+
+        <h1>
+            Create Account
+        </h1>
+
+
+        <p class="subtitle">
+            Create your AU App Finder account
+        </p>
+
+
+       
+
+        <form id="signup-form">
+
+
+           
+
+            <div class="form-group">
+
+                <label for="name">
+                    Full Name
+                </label>
+
+                <input
+                    type="text"
+                    id="name"
+                    placeholder="Enter your full name"
+                    required
+                >
+
+            </div>
+
+
+           
+
+            <div class="form-group">
+
+                <label for="email">
+                    Email
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Enter your email"
+                    required
+                >
+
+            </div>
+
+
+            
+
+            <div class="form-group">
+
+                <label for="password">
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Create a password"
+                    required
+                >
+
+            </div>
+
+
+            
+
+            <div class="form-group">
+
+                <label for="confirm-password">
+                    Confirm Password
+                </label>
+
+                <input
+                    type="password"
+                    id="confirm-password"
+                    placeholder="Confirm your password"
+                    required
+                >
+
+            </div>
+
+
+            
+
+            <button
+                type="submit"
+                class="signup-button"
+            >
+                Create Account
+            </button>
+
+
+        </form>
+
+
+        
+
+        <a
+            href="signin.html"
+            class="back"
+        >
+            Already have an account? Sign In
+        </a>
+
+
+       
+
+        <a
+            href="index.html"
+            class="back"
+        >
+            ← Back to AU App Finder
+        </a>
+
+
+    </div>
+
+
+    <script>
+
+        document
+            .getElementById("signup-form")
+            .addEventListener("submit", async function(event) {
+
+                event.preventDefault();
+
+
+                // Get form values
+
+                const name =
+                    document
+                        .getElementById("name")
+                        .value
+                        .trim();
+
+                const email =
+                    document
+                        .getElementById("email")
+                        .value
+                        .trim();
+
+                const password =
+                    document
+                        .getElementById("password")
+                        .value;
+
+                const confirmPassword =
+                    document
+                        .getElementById("confirm-password")
+                        .value;
+
+
+                
+                if (password !== confirmPassword) {
+
+                    alert("Passwords do not match.");
+
+                    return;
+                }
+
+
+                try {
+
+                    const response = await fetch(
+                        "http://localhost:3000/api/signup",
+                        {
+
+                            method: "POST",
+
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+
+                            body: JSON.stringify({
+
+                                name: name,
+
+                                email: email,
+
+                                password: password
+
+                            })
+
+                        }
+                    );
+
+
+                   
+
+                    const data =
+                        await response.json();
+
+
+                    if (response.ok) {
+
+                        alert(
+                            "Account created successfully!"
+                        );
+
+
+                       
+                        window.location.href =
+                            "signin.html";
+
+                    }
+
+
+                    else {
+
+                        alert(
+                            data.message ||
+                            "Unable to create account."
+                        );
+
+                    }
+
+
+                } catch (error) {
+
+                    console.error(
+                        "Signup error:",
+                        error
+                    );
+
+
+                    alert(
+                        "Cannot connect to the server. " +
+                        "Please make sure the backend is running."
+                    );
+
+                }
+
+            });
+
+    </script>
+
+
+</body>
+
+</html>
