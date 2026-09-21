@@ -1,0 +1,274 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sign In - AU App Finder</title>
+
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Inter', Arial, sans-serif;
+            background: linear-gradient(135deg, #ffffff, #f5f3ff);
+            color: #11142d;
+        }
+
+        .signin-container {
+            width: 400px;
+            max-width: 90%;
+            padding: 35px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.10);
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .logo img {
+            width: 100px;
+            height: 70px;
+            object-fit: contain;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 8px;
+            font-size: 28px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 28px;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 7px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        input {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #6545d8;
+        }
+
+        .signin-button {
+            width: 100%;
+            padding: 13px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #6545d8, #8b5cf6);
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 8px;
+        }
+
+        .signin-button:hover {
+            transform: translateY(-1px);
+        }
+
+        .back {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #6545d8;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .back:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="signin-container">
+
+        <div class="logo">
+            <img src="au.png" alt="AU App Finder">
+        </div>
+
+        <h1>Welcome Back</h1>
+
+        <p class="subtitle">
+            Sign in to AU App Finder
+        </p>
+
+        <form id="signin-form">
+
+            <div class="form-group">
+                <label for="email">Email</label>
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Enter your email"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Enter your password"
+                    required
+                >
+            </div>
+
+            <button type="submit" class="signin-button">
+                Sign In
+            </button>
+
+        </form>
+
+        <a href="signup.html" class="back">
+            Don't have an account? Create one
+        </a>
+
+        <a href="index.html" class="back">
+            ← Back to AU App Finder
+        </a>
+
+    </div>
+
+
+    <script>
+
+        document
+            .getElementById("signin-form")
+            .addEventListener("submit", async function(event) {
+
+                event.preventDefault();
+
+
+                
+                const email =
+                    document
+                        .getElementById("email")
+                        .value
+                        .trim();
+
+
+                
+                const password =
+                    document
+                        .getElementById("password")
+                        .value;
+
+
+                try {
+
+                    
+                    const response = await fetch(
+                        "http://localhost:3000/api/signin",
+                        {
+                            method: "POST",
+
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+
+                            body: JSON.stringify({
+                                email: email,
+                                password: password
+                            })
+                        }
+                    );
+
+
+                    
+                    const data = await response.json();
+
+
+                   
+                   if (response.ok) {
+
+    localStorage.setItem(
+        "auAppFinderLoggedIn",
+        "true"
+    );
+
+    localStorage.setItem(
+        "auAppFinderUser",
+        JSON.stringify({
+            id: data.user.id,
+            name: data.user.name,
+            email: data.user.email,
+            role: data.user.role
+        })
+    );
+
+    alert("Sign in successful!");
+
+    window.location.href = "index.html";
+
+
+                    } else {
+
+                       
+                        alert(
+                            data.message ||
+                            "Invalid email or password."
+                        );
+                    }
+
+                } catch (error) {
+
+                    console.error(
+                        "Signin error:",
+                        error
+                    );
+
+
+                    alert(
+                        "Cannot connect to the server. " +
+                        "Please make sure the backend is running."
+                    );
+                }
+
+            });
+
+    </script>
+
+</body>
+</html>
+```

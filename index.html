@@ -1,0 +1,1257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI App Finder</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+</head>
+
+<body>
+
+    <header>
+
+        <div class="nav">
+
+            <!-- Logo -->
+            <div class="logo">
+                <img
+                    src="au.png"
+                    alt="AU App Finder Logo"
+                >
+            </div>
+
+
+            <!-- Navigation -->
+            <div class="nav-link">
+
+                <a href="#explore">
+                    Explore
+                </a>
+
+                <a href="#categories">
+                    Categories
+                </a>
+
+                <a
+                    href="#Compare"
+                    id="nav-compare"
+                >
+                    Compare
+                </a>
+
+                <a href="#about">
+                    About
+                </a>
+
+                <a
+                    href="#Blog"
+                    id="nav-blog"
+                >
+                    Blog
+                </a>
+
+            </div>
+
+
+            <!-- Login / Profile -->
+            <div class="login">
+
+                <!-- Sign In -->
+                <button
+                    type="button"
+                    class="sign-button"
+                    id="sign-in-button"
+                >
+                    Sign In
+                </button>
+
+
+                <!-- Profile -->
+                <button
+                    type="button"
+                    class="profile-button"
+                    id="profile-button"
+                    style="display: none;"
+                >
+                    <i class="fa-solid fa-user"></i>
+                    Profile
+                </button>
+
+
+                <!-- Logout -->
+                <button
+                    type="button"
+                    class="logout-button"
+                    id="logout-button"
+                    style="display: none;"
+                >
+                    Logout
+                </button>
+
+            </div>
+
+
+            <!-- Get Started -->
+            <button
+                type="button"
+                class="get"
+            >
+                Get started
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <main>
+
+        <section
+            class="hero"
+            id="explore"
+        >
+
+            <h1 class="text">
+
+                Find the Perfect<br>
+
+                <span class="ai">
+                    AI App
+                </span>
+
+                for Your Need
+
+            </h1>
+
+
+            <p class="description">
+
+                Tell us What you want to do, and we'll
+                recommend <br>
+                the best AI tools to get it done
+
+            </p>
+
+        </section>
+
+        <div class="search-box">
+
+            <div class="search-input">
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                <input
+                    type="text"
+                    id="search-input"
+                    placeholder="e.g I want to create YouTube video using AI"
+                >
+
+            </div>
+
+
+            <button
+                type="button"
+                class="search-button"
+            >
+                Find AI Tools
+            </button>
+
+        </div>
+
+        <div class="popular-search">
+
+            <span>
+                popular search:
+            </span>
+
+
+            <a
+                href="#"
+                onclick="searchPopular('Create presentation'); return false;"
+            >
+                Create presentation
+            </a>
+
+
+            <a
+                href="#"
+                onclick="searchPopular('Edit videos'); return false;"
+            >
+                Edit videos
+            </a>
+
+
+            <a
+                href="#"
+                onclick="searchPopular('Write content'); return false;"
+            >
+                Write content
+            </a>
+
+
+            <a
+                href="#"
+                onclick="searchPopular('Generate images'); return false;"
+            >
+                Generate images
+            </a>
+
+
+            <a
+                href="#"
+                onclick="searchPopular('Code faster'); return false;"
+            >
+                Code faster
+            </a>
+
+        </div>
+
+
+        <section
+            class="results-section"
+            id="ai-tools"
+        >
+
+            <h2>
+                Recommended AI Tools
+            </h2>
+
+
+           
+            <div id="results-container"></div>
+
+
+            <div class="category-filters">
+
+                <button
+                    type="button"
+                    data-category="All"
+                >
+                    All
+                </button>
+
+
+                <button
+                    type="button"
+                    data-category="Chatbot"
+                >
+                    Chatbot
+                </button>
+
+
+                <button
+                    type="button"
+                    data-category="Design"
+                >
+                    Design
+                </button>
+
+
+                <button
+                    type="button"
+                    data-category="Video"
+                >
+                    Video
+                </button>
+
+
+                <button
+                    type="button"
+                    data-category="Coding"
+                >
+                    Coding
+                </button>
+
+            </div>
+
+
+            <div class="smart-filters">
+
+                <div class="filter-title">
+
+                    <h3>
+                        🔎 Filter & Sort AI Tools
+                    </h3>
+
+
+                    <button
+                        type="button"
+                        onclick="resetSmartFilters()"
+                    >
+                        Reset
+                    </button>
+
+                </div>
+
+
+                <div class="filter-controls">
+
+
+                    
+
+                    <div class="filter-group">
+
+                        <label for="category-filter">
+                            Category
+                        </label>
+
+
+                        <select
+                            id="category-filter"
+                            onchange="applySmartFilters()"
+                        >
+
+                            <option value="All">
+                                All Categories
+                            </option>
+
+                            <option value="Chatbot">
+                                Chatbot
+                            </option>
+
+                            <option value="Design">
+                                Design
+                            </option>
+
+                            <option value="Video">
+                                Video
+                            </option>
+
+                            <option value="Coding">
+                                Coding
+                            </option>
+
+                            <option value="Writing">
+                                Writing
+                            </option>
+
+                            <option value="Productivity">
+                                Productivity
+                            </option>
+
+                            <option value="Education">
+                                Education
+                            </option>
+
+                            <option value="Research">
+                                Research
+                            </option>
+
+                            <option value="Audio">
+                                Audio
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    
+
+                    <div class="filter-group">
+
+                        <label for="price-filter">
+                            Pricing
+                        </label>
+
+
+                        <select
+                            id="price-filter"
+                            onchange="applySmartFilters()"
+                        >
+
+                            <option value="All">
+                                All Pricing
+                            </option>
+
+                            <option value="Free">
+                                Free
+                            </option>
+
+                            <option value="Free / Paid">
+                                Free / Paid
+                            </option>
+
+                            <option value="Paid">
+                                Paid
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    
+
+                    <div class="filter-group">
+
+                        <label for="rating-filter">
+                            Minimum Rating
+                        </label>
+
+
+                        <select
+                            id="rating-filter"
+                            onchange="applySmartFilters()"
+                        >
+
+                            <option value="0">
+                                Any Rating
+                            </option>
+
+                            <option value="4">
+                                ⭐ 4.0+
+                            </option>
+
+                            <option value="4.5">
+                                ⭐ 4.5+
+                            </option>
+
+                            <option value="4.7">
+                                ⭐ 4.7+
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    
+
+                    <div class="filter-group">
+
+                        <label for="sort-filter">
+                            Sort By
+                        </label>
+
+
+                        <select
+                            id="sort-filter"
+                            onchange="applySmartFilters()"
+                        >
+
+                            <option value="match">
+                                Best Match
+                            </option>
+
+                            <option value="rating">
+                                Highest Rating
+                            </option>
+
+                            <option value="az">
+                                A → Z
+                            </option>
+
+                            <option value="za">
+                                Z → A
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <section class="popular-tools">
+
+        <div class="tools-heading">
+
+            <div>
+
+                <h2>
+                    🔥 Popular AI Tools
+                </h2>
+
+                <p>
+                    Top rated and most used AI tools loved by users
+                </p>
+
+            </div>
+
+
+            <a
+                href="#"
+                class="view-all"
+                onclick="return false;"
+            >
+                View All Tools →
+            </a>
+
+        </div>
+
+
+        <div class="tools-container">
+
+
+           
+
+            <div class="tool-card">
+
+                <div class="tool-top">
+
+                    <div class="tool-logo chatgpt-logo">
+                        AI
+                    </div>
+
+
+                    <div>
+
+                        <h3>
+                            ChatGPT
+                        </h3>
+
+                        <p>
+                            AI chatbot for writing, learning, and problem solving.
+                        </p>
+
+                    </div>
+
+
+                    <span class="rating">
+                        ⭐ 4.9
+                    </span>
+
+                </div>
+
+
+                <span class="category">
+                    Chatbot
+                </span>
+
+            </div>
+
+
+            
+
+            <div class="tool-card">
+
+                <div class="tool-top">
+
+                    <div class="tool-logo canva-logo">
+                        C
+                    </div>
+
+
+                    <div>
+
+                        <h3>
+                            Canva AI
+                        </h3>
+
+                        <p>
+                            Design anything with AI, from posters to presentations.
+                        </p>
+
+                    </div>
+
+
+                    <span class="rating">
+                        ⭐ 4.8
+                    </span>
+
+                </div>
+
+
+                <span class="category design">
+                    Design
+                </span>
+
+            </div>
+
+
+           
+
+            <div class="tool-card">
+
+                <div class="tool-top">
+
+                    <div class="tool-logo notion-logo">
+                        N
+                    </div>
+
+
+                    <div>
+
+                        <h3>
+                            Notion AI
+                        </h3>
+
+                        <p>
+                            Write, brainstorm and organize with AI power.
+                        </p>
+
+                    </div>
+
+
+                    <span class="rating">
+                        ⭐ 4.7
+                    </span>
+
+                </div>
+
+
+                <span class="category productivity">
+                    Productivity
+                </span>
+
+            </div>
+
+
+            
+
+            <div class="tool-card">
+
+                <div class="tool-top">
+
+                    <div class="tool-logo pictory-logo">
+                        🐙
+                    </div>
+
+
+                    <div>
+
+                        <h3>
+                            Pictory
+                        </h3>
+
+                        <p>
+                            Create videos from text in minutes with AI.
+                        </p>
+
+                    </div>
+
+
+                    <span class="rating">
+                        ⭐ 4.6
+                    </span>
+
+                </div>
+
+
+                <span class="category video">
+                    Video
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+ 
+    <section
+        class="categories"
+        id="categories"
+    >
+
+        <div class="categories-heading">
+
+            <h2>
+                Explore AI Categories
+            </h2>
+
+            <p>
+                Find the right AI tools for what you want to do.
+            </p>
+
+        </div>
+
+
+        <div class="category-container">
+
+
+            <button
+                type="button"
+                class="category-card"
+                data-category="Chatbot"
+            >
+
+                <div class="category-icon">
+                    💬
+                </div>
+
+                <h3>
+                    Chatbots
+                </h3>
+
+                <p>
+                    AI assistants & conversations
+                </p>
+
+            </button>
+
+
+            <button
+                type="button"
+                class="category-card"
+                data-category="Design"
+            >
+
+                <div class="category-icon">
+                    🎨
+                </div>
+
+                <h3>
+                    Design
+                </h3>
+
+                <p>
+                    Images, graphics & designs
+                </p>
+
+            </button>
+
+
+            <button
+                type="button"
+                class="category-card"
+                data-category="Video"
+            >
+
+                <div class="category-icon">
+                    🎬
+                </div>
+
+                <h3>
+                    Video
+                </h3>
+
+                <p>
+                    Create & edit videos
+                </p>
+
+            </button>
+
+
+            <button
+                type="button"
+                class="category-card"
+                data-category="Writing"
+            >
+
+                <div class="category-icon">
+                    ✍️
+                </div>
+
+                <h3>
+                    Writing
+                </h3>
+
+                <p>
+                    Write & improve content
+                </p>
+
+            </button>
+
+
+            <button
+                type="button"
+                class="category-card"
+                data-category="Coding"
+            >
+
+                <div class="category-icon">
+                    💻
+                </div>
+
+                <h3>
+                    Coding
+                </h3>
+
+                <p>
+                    Code faster with AI
+                </p>
+
+            </button>
+
+
+            <button
+                type="button"
+                class="category-card"
+                data-category="Productivity"
+            >
+
+                <div class="category-icon">
+                    📚
+                </div>
+
+                <h3>
+                    Productivity
+                </h3>
+
+                <p>
+                    Work smarter with AI
+                </p>
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+   
+    <section class="why-au">
+
+        <div class="why-heading">
+
+            <h2>
+                Why AU App Finder?
+            </h2>
+
+            <p>
+                Discover the right AI tools without wasting time searching.
+            </p>
+
+        </div>
+
+
+        <div class="why-container">
+
+
+            <div class="why-card">
+
+                <div class="why-icon">
+                    🔎
+                </div>
+
+                <h3>
+                    Easy Discovery
+                </h3>
+
+                <p>
+                    Find AI tools quickly based on what you actually want to do.
+                </p>
+
+            </div>
+
+
+            <div class="why-card">
+
+                <div class="why-icon">
+                    🎯
+                </div>
+
+                <h3>
+                    Smart Recommendations
+                </h3>
+
+                <p>
+                    Discover tools that match your specific needs and goals.
+                </p>
+
+            </div>
+
+
+            <div class="why-card">
+
+                <div class="why-icon">
+                    ⭐
+                </div>
+
+                <h3>
+                    Compare Tools
+                </h3>
+
+                <p>
+                    Compare ratings, features and categories before choosing a tool.
+                </p>
+
+            </div>
+
+
+            <div class="why-card">
+
+                <div class="why-icon">
+                    💰
+                </div>
+
+                <h3>
+                    Free & Paid
+                </h3>
+
+                <p>
+                    Easily discover free and paid AI tools in one place.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="recent-tools">
+
+        <div class="recent-heading">
+
+            <div>
+
+                <h2>
+                    🆕 Recently Added
+                </h2>
+
+                <p>
+                    Explore some of the latest AI tools added to AU App Finder.
+                </p>
+
+            </div>
+
+
+            <a
+                href="#"
+                class="view-all"
+                onclick="return false;"
+            >
+                View All →
+            </a>
+
+        </div>
+
+
+        <div class="recent-container">
+
+
+            <div class="recent-card">
+
+                <div class="recent-logo">
+                    🎥
+                </div>
+
+
+                <div class="recent-info">
+
+                    <h3>
+                        VideoGen AI
+                    </h3>
+
+                    <p>
+                        Create videos from simple text prompts.
+                    </p>
+
+
+                    <div class="recent-bottom">
+
+                        <span>
+                            ⭐ 4.7
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="recent-card">
+
+                <div class="recent-logo">
+                    ✍️
+                </div>
+
+
+                <div class="recent-info">
+
+                    <h3>
+                        WriteMate AI
+                    </h3>
+
+                    <p>
+                        Generate and improve your written content.
+                    </p>
+
+
+                    <div class="recent-bottom">
+
+                        <span>
+                            ⭐ 4.6
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="recent-card">
+
+                <div class="recent-logo">
+                    🎨
+                </div>
+
+
+                <div class="recent-info">
+
+                    <h3>
+                        DesignAI
+                    </h3>
+
+                    <p>
+                        Create beautiful designs using AI.
+                    </p>
+
+
+                    <div class="recent-bottom">
+
+                        <span>
+                            ⭐ 4.8
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section
+        class="about-au"
+        id="about"
+    >
+
+        <div class="about-content">
+
+
+            <div class="about-text">
+
+                <span class="about-label">
+                    ABOUT AU APP FINDER
+                </span>
+
+
+                <h2>
+                    Find the right AI tool without the endless searching.
+                </h2>
+
+
+                <p>
+                    AU App Finder is a platform designed to help you discover
+                    AI tools based on what you actually want to accomplish.
+                    Instead of searching through hundreds of AI websites,
+                    simply describe your need and explore suitable tools.
+                </p>
+
+
+                <p>
+                    From writing and design to coding, video creation and
+                    productivity, AU App Finder brings useful AI tools
+                    together in one place.
+                </p>
+
+
+                <a
+                    href="#ai-tools"
+                    class="about-button"
+                >
+                    Explore AI Tools →
+                </a>
+
+            </div>
+
+
+            <div class="about-box">
+
+                <div class="about-big-icon">
+                    🤖
+                </div>
+
+                <h3>
+                    One Place. Many AI Tools.
+                </h3>
+
+                <p>
+                    Discover, compare and choose AI tools that fit your needs.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <footer class="footer">
+
+        <div class="footer-container">
+
+
+            <!-- Brand -->
+
+            <div class="footer-brand">
+
+                <h2>
+                    AU App Finder
+                </h2>
+
+                <p>
+                    Discover the right AI tools for whatever you want to do.
+                </p>
+
+            </div>
+
+
+            <!-- Quick Links -->
+
+            <div class="footer-links">
+
+                <h3>
+                    Quick Links
+                </h3>
+
+
+                <a href="#explore">
+                    Home
+                </a>
+
+
+                <a href="#categories">
+                    Categories
+                </a>
+
+
+                <a href="#ai-tools">
+                    AI Tools
+                </a>
+
+
+                <a href="#about">
+                    About
+                </a>
+
+            </div>
+
+
+           
+
+            <div class="footer-links">
+
+                <h3>
+                    Categories
+                </h3>
+
+
+                <a
+                    href="#ai-tools"
+                    onclick="filterTools('Chatbot'); return false;"
+                >
+                    Chatbots
+                </a>
+
+
+                <a
+                    href="#ai-tools"
+                    onclick="filterTools('Design'); return false;"
+                >
+                    Design
+                </a>
+
+
+                <a
+                    href="#ai-tools"
+                    onclick="filterTools('Video'); return false;"
+                >
+                    Video
+                </a>
+
+
+                <a
+                    href="#ai-tools"
+                    onclick="filterTools('Coding'); return false;"
+                >
+                    Coding
+                </a>
+
+            </div>
+
+
+           
+
+            <div class="footer-links">
+
+                <h3>
+                    Follow Us
+                </h3>
+
+
+                <a
+                    href="#"
+                    onclick="return false;"
+                >
+                    Instagram
+                </a>
+
+
+                <a
+                    href="#"
+                    onclick="return false;"
+                >
+                    LinkedIn
+                </a>
+
+
+                <a
+                    href="#"
+                    onclick="return false;"
+                >
+                    GitHub
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <p>
+                © 2026 AU App Finder. All rights reserved.
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
