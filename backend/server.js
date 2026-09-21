@@ -700,7 +700,7 @@ app.post(
                 token,
                 {
                     httpOnly: true,
-                    secure: false,
+                    secure: process.env.NODE_ENV === "production",
                     sameSite: "lax",
                     maxAge:
                         24 *
@@ -2536,7 +2536,7 @@ app.post(
             "auAppFinderToken",
             {
                 httpOnly: true,
-                secure: false,
+                secure: process.env.NODE_ENV === "production",
                 sameSite: "lax"
             }
         );
@@ -2558,7 +2558,6 @@ app.post(
 // =====================================================
 // START SERVER
 // =====================================================
-
 
 const PORT = process.env.PORT || 3000;
 
