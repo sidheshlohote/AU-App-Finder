@@ -1098,7 +1098,7 @@
             try {
 
                 const response = await fetch(
-                    "http://localhost:3000/api/admin/stats",
+                    "/api/admin/stats",
                     {
                         credentials: "include"
                     }
@@ -1177,7 +1177,7 @@
 
                 const response =
                     await fetch(
-                        "http://localhost:3000/api/admin/stats",
+                        "/api/admin/stats",
                         {
                             credentials: "include"
                         }
@@ -1250,7 +1250,7 @@
                     try {
 
                         await fetch(
-                            "http://localhost:3000/api/logout",
+                            "/api/logout",
                             {
                                 method: "POST",
                                 credentials: "include"
@@ -1584,7 +1584,7 @@
 
                         const categoryResponse =
                             await fetch(
-                                "http://localhost:3000/api/categories"
+                                "/api/categories"
                             );
 
 
@@ -1762,7 +1762,7 @@
 
                                     const response =
                                         await fetch(
-                                            "http://localhost:3000/api/admin/tools",
+                                            "/api/admin/tools",
                                             {
                                                 method: "POST",
 
@@ -1883,7 +1883,7 @@
 
                         const response =
                             await fetch(
-                                "http://localhost:3000/api/admin/tools",
+                                "/api/admin/tools",
                                 {
                                     credentials:
                                         "include"
@@ -2238,7 +2238,7 @@
 
                                     const response =
                                         await fetch(
-                                            `http://localhost:3000/api/admin/tools/${encodeURIComponent(toolId)}`,
+                                            `/api/admin/tools/${encodeURIComponent(toolId)}`,
                                             {
                                                 method:
                                                     "DELETE",
@@ -2612,7 +2612,7 @@
 
                 const response =
                     await fetch(
-                        "http://localhost:3000/api/categories"
+                        "/api/categories"
                     );
 
 
@@ -2723,7 +2723,7 @@
 
                             const response =
                                 await fetch(
-                                    `http://localhost:3000/api/admin/tools/${encodeURIComponent(tool.id)}`,
+                                    `/api/admin/tools/${encodeURIComponent(tool.id)}`,
                                     {
                                         method:
                                             "PUT",
