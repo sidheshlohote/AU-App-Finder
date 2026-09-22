@@ -659,6 +659,14 @@ let favorites = [];
 
 let compareList = [];
 
+/* =========================================================
+   PAGINATION
+   ========================================================= */
+
+const PAGINATION_ITEMS_PER_PAGE = 8;
+
+let paginationCurrentPage = 1;
+
 
 function normalize(text) {
     return String(text || "").toLowerCase().trim();
@@ -1365,6 +1373,8 @@ function displayResults(
             ? tools
             : [];
 
+            paginationCurrentPage = 1;
+
 
     if (!currentResults.length) {
 
@@ -1553,6 +1563,289 @@ function displayResults(
 
 
     attachCardEvents();
+
+    renderPaginationControls();
+
+
+}
+
+/* =========================================================
+   PAGINATION CONTROLS
+   ========================================================= */
+
+function renderPaginationControls() {
+
+    const container =
+        document.getElementById(
+            "results-container"
+        );
+
+    if (!container) {
+        return;
+    }
+
+
+    const cards =
+        Array.from(
+            container.querySelectorAll(
+                ".tool-card"
+            )
+        );
+
+
+    // Remove old pagination
+    const oldPagination =
+        container.querySelector(
+            ".pagination-controls"
+        );
+
+    if (oldPagination) {
+        oldPagination.remove();
+    }
+
+
+    // If 8 or fewer tools, no pagination is needed
+    if (
+        cards.length <=
+        PAGINATION_ITEMS_PER_PAGE
+    ) {
+
+        cards.forEach(card => {
+            card.style.display = "";
+        });
+
+        return;
+    }
+
+
+    const totalPages =
+        Math.ceil(
+            cards.length /
+            PAGINATION_ITEMS_PER_PAGE
+        );
+
+
+    // Keep page number valid
+    paginationCurrentPage =
+        Math.min(
+            Math.max(
+                1,
+                paginationCurrentPage
+            ),
+            totalPages
+        );
+
+
+    const startIndex =
+        (
+            paginationCurrentPage - 1
+        ) *
+        PAGINATION_ITEMS_PER_PAGE;
+
+
+    const endIndex =
+        startIndex +
+        PAGINATION_ITEMS_PER_PAGE;
+
+
+    // Show only current page
+    cards.forEach(
+        (card, index) => {
+
+            if (
+                index >= startIndex &&
+                index < endIndex
+            ) {
+
+                card.style.display = "";
+
+            } else {
+
+                card.style.display = "none";
+
+            }
+
+        }
+    );
+
+
+    /* =========================
+       CREATE PAGINATION
+    ========================= */
+
+    const pagination =
+        document.createElement("nav");
+
+    pagination.className =
+        "pagination-controls";
+
+    pagination.setAttribute(
+        "aria-label",
+        "AI tools pagination"
+    );
+
+
+    /* =========================
+       PREVIOUS BUTTON
+    ========================= */
+
+    const previousButton =
+        document.createElement("button");
+
+    previousButton.type = "button";
+
+    previousButton.className =
+        "pagination-button";
+
+    previousButton.innerHTML =
+        '<i class="fa-solid fa-chevron-left"></i> Previous';
+
+    previousButton.disabled =
+        paginationCurrentPage === 1;
+
+
+    previousButton.addEventListener(
+        "click",
+        function () {
+
+            if (
+                paginationCurrentPage > 1
+            ) {
+
+                paginationCurrentPage--;
+
+                renderPaginationControls();
+
+            }
+
+        }
+    );
+
+
+    pagination.appendChild(
+        previousButton
+    );
+
+
+    /* =========================
+       PAGE NUMBERS
+    ========================= */
+
+    const pageContainer =
+        document.createElement("div");
+
+    pageContainer.className =
+        "pagination-pages";
+
+
+    for (
+        let page = 1;
+        page <= totalPages;
+        page++
+    ) {
+
+        const pageButton =
+            document.createElement("button");
+
+        pageButton.type = "button";
+
+        pageButton.className =
+            "pagination-page";
+
+
+        pageButton.textContent =
+            page;
+
+
+        if (
+            page ===
+            paginationCurrentPage
+        ) {
+
+            pageButton.classList.add(
+                "active"
+            );
+
+        }
+
+
+        pageButton.addEventListener(
+            "click",
+            function () {
+
+                paginationCurrentPage =
+                    page;
+
+                renderPaginationControls();
+
+            }
+        );
+
+
+        pageContainer.appendChild(
+            pageButton
+        );
+
+    }
+
+
+    pagination.appendChild(
+        pageContainer
+    );
+
+
+    /* =========================
+       NEXT BUTTON
+    ========================= */
+
+    const nextButton =
+        document.createElement("button");
+
+    nextButton.type = "button";
+
+    nextButton.className =
+        "pagination-button";
+
+    nextButton.innerHTML =
+        'Next <i class="fa-solid fa-chevron-right"></i>';
+
+
+    nextButton.disabled =
+        paginationCurrentPage ===
+        totalPages;
+
+
+    nextButton.addEventListener(
+        "click",
+        function () {
+
+            if (
+                paginationCurrentPage <
+                totalPages
+            ) {
+
+                paginationCurrentPage++;
+
+                renderPaginationControls();
+
+            }
+
+        }
+    );
+
+
+    pagination.appendChild(
+        nextButton
+    );
+
+
+    /* =========================
+       ADD TO RESULTS
+    ========================= */
+
+    container.appendChild(
+        pagination
+    );
 
 }
 
