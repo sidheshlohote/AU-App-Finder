@@ -3879,3 +3879,107 @@ body {
         font-size: 10px;
     }
 }
+/* =========================================================
+   FIX PAGINATION WIDTH INSIDE RESULTS GRID
+   ========================================================= */
+
+#results-container .pagination-controls {
+    grid-column: 1 / -1;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+    flex-wrap: nowrap;
+
+    overflow: visible;
+}
+
+
+/* Keep page numbers in one row */
+
+#results-container .pagination-pages {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 6px;
+    flex-wrap: nowrap;
+
+    flex-shrink: 0;
+}
+
+
+/* Prevent buttons from shrinking */
+
+#results-container .pagination-button,
+#results-container .pagination-page {
+    flex-shrink: 0;
+}
+
+/* =========================================================
+   FINAL PAGINATION FIX
+   ========================================================= */
+
+#results-container .pagination-controls {
+    grid-column: 1 / -1 !important;
+
+    width: 100% !important;
+    max-width: 100% !important;
+
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
+    flex-wrap: nowrap !important;
+
+    overflow: visible !important;
+
+    box-sizing: border-box;
+
+    margin: 30px 0 10px;
+}
+
+
+#results-container .pagination-pages {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+
+    gap: 6px;
+
+    flex-wrap: nowrap !important;
+
+    flex-shrink: 0;
+}
+
+
+#results-container .pagination-button,
+#results-container .pagination-page {
+    flex-shrink: 0 !important;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    #results-container .pagination-controls {
+        justify-content: flex-start;
+
+        overflow-x: auto !important;
+
+        padding: 5px 4px;
+
+        scrollbar-width: thin;
+    }
+
+}
