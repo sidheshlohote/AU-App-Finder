@@ -3022,15 +3022,14 @@ body {
     transform: translateY(0);
 }
 /* =========================================================
-   AU APP FINDER - MOBILE PHONE UI IMPROVEMENT
-   Add this at the VERY END of style.css
+   AU APP FINDER - FINAL MOBILE DESIGN
    ========================================================= */
 
 @media (max-width: 768px) {
 
-    /* -------------------------
-       GLOBAL MOBILE FIX
-    ------------------------- */
+    /* =========================
+       GLOBAL
+    ========================= */
 
     html,
     body {
@@ -3044,55 +3043,83 @@ body {
     }
 
 
-    /* -------------------------
-       NAVIGATION
-    ------------------------- */
+    /* =========================
+       HEADER
+    ========================= */
 
     .nav {
         width: 100%;
-        min-height: auto;
         padding: 10px 14px 8px;
         display: flex;
         flex-wrap: wrap;
-        gap: 8px;
         align-items: center;
-        justify-content: space-between;
+        justify-content: center;
+        gap: 8px;
     }
 
+    /* Logo gets its own clean row */
     .logo {
-        flex: 0 0 auto;
+        order: 1;
+        width: 100%;
+        justify-content: center;
         margin: 0;
     }
 
     .logo img {
-        width: 95px;
-        height: 48px;
+        width: 100px;
+        height: 50px;
+        object-fit: contain;
     }
 
+
+    /* Login buttons */
     .login {
+        order: 2;
         margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         gap: 6px;
+        flex-shrink: 0;
     }
 
     .sign-button,
-    .get {
+    .logout-button {
         height: 36px;
-        padding: 0 11px;
+        padding: 0 12px;
         font-size: 11px;
         border-radius: 9px;
+        white-space: nowrap;
     }
 
-    .nav-link {
+
+    /* Get started */
+    .get {
         order: 3;
+        height: 36px;
+        padding: 0 13px;
+        font-size: 11px;
+        border-radius: 9px;
+        white-space: nowrap;
+        margin: 0;
+    }
+
+
+    /* Navigation links */
+    .nav-link {
+        order: 4;
         width: 100%;
         display: flex;
         justify-content: flex-start;
         align-items: center;
-        gap: 4px;
-        padding: 7px 0 4px;
+        gap: 5px;
+        padding: 6px 0 2px;
+
         overflow-x: auto;
         overflow-y: hidden;
+
         white-space: nowrap;
+
         scrollbar-width: none;
         -webkit-overflow-scrolling: touch;
     }
@@ -3103,119 +3130,124 @@ body {
 
     .nav-link a {
         flex: 0 0 auto;
+
         margin: 0;
-        padding: 7px 11px;
-        font-size: 12px;
+        padding: 6px 10px;
+
+        font-size: 11px;
         border-radius: 20px;
-        background: #f5f3ff;
-        color: #37306f;
-    }
 
-    .nav-link a:hover {
-        background: #ebe7ff;
+        background: #f4f1ff;
+        color: #352b78;
     }
 
 
-    /* -------------------------
+    /* =========================
        HERO
-    ------------------------- */
+    ========================= */
 
     .hero {
         width: 100%;
-        padding: 42px 16px 22px;
+        padding: 38px 15px 20px;
+        text-align: center;
     }
 
     .text {
-        font-size: clamp(28px, 8vw, 36px);
-        line-height: 1.15;
-        margin-bottom: 16px;
+        font-size: 29px;
+        line-height: 1.12;
+        margin-bottom: 15px;
     }
 
     .description {
         width: 100%;
-        max-width: 520px;
-        font-size: 14px;
-        line-height: 1.6;
-        padding: 0 4px;
+        max-width: 330px;
+        margin: 0 auto;
+        font-size: 13px;
+        line-height: 1.55;
     }
 
 
-    /* -------------------------
-       SEARCH BOX
-    ------------------------- */
+    /* =========================
+       SEARCH
+    ========================= */
 
     .search-box {
-        width: calc(100% - 28px);
+        width: calc(100% - 24px);
         margin: 22px auto 0;
+
         min-height: auto;
-        padding: 7px;
+
         display: flex;
         flex-direction: column;
+
         gap: 7px;
-        border-radius: 16px;
+        padding: 7px;
+
+        border-radius: 15px;
     }
 
     .search-input {
         width: 100%;
-        min-height: 54px;
-        padding: 0 12px;
-        gap: 10px;
+        min-height: 52px;
+        padding: 0 11px;
+        gap: 9px;
     }
 
     .search-input i {
-        font-size: 14px;
+        font-size: 13px;
     }
 
     #search-input {
         width: 100%;
         min-width: 0;
-        font-size: 14px;
+        font-size: 13px;
     }
 
     #search-input::placeholder {
-        font-size: 13px;
+        font-size: 12px;
     }
 
     .search-button {
         width: 100%;
         min-width: 0;
-        height: 48px;
-        padding: 0 16px;
-        font-size: 14px;
-        border-radius: 12px;
+        height: 45px;
+        font-size: 13px;
+        border-radius: 11px;
     }
 
 
-    /* -------------------------
+    /* =========================
        POPULAR SEARCH
-    ------------------------- */
+    ========================= */
 
     .popular-search {
         width: calc(100% - 30px);
-        margin: 14px auto 0;
+        margin: 13px auto 0;
+
         display: flex;
-        flex-wrap: wrap;
         justify-content: center;
-        gap: 7px;
+        flex-wrap: wrap;
+
+        gap: 6px;
     }
 
     .popular-search span {
         width: 100%;
         text-align: center;
-        font-size: 12px;
+        font-size: 11px;
     }
 
     .popular-search a,
     .popular-search button {
-        font-size: 11px;
-        padding: 7px 10px;
-        border-radius: 18px;
+        font-size: 10px;
+        padding: 6px 9px;
+        border-radius: 16px;
     }
 
 
-    /* -------------------------
-       SECTION WIDTH
-    ------------------------- */
+    /* =========================
+       MAIN SECTIONS
+    ========================= */
 
     .results-section,
     .popular-tools,
@@ -3223,38 +3255,38 @@ body {
     .why-au,
     .recent-tools,
     .about-au {
-        width: calc(100% - 28px);
+        width: calc(100% - 24px);
         max-width: none;
     }
 
 
-    /* -------------------------
+    /* =========================
        SECTION HEADINGS
-    ------------------------- */
+    ========================= */
 
     .results-section {
-        margin: 35px auto;
+        margin: 32px auto;
     }
 
     .results-section h2,
     .categories-heading h2,
     .why-heading h2,
     .recent-heading h2 {
-        font-size: 23px;
+        font-size: 21px;
         line-height: 1.25;
     }
 
     .categories-heading p,
     .why-heading p,
     .recent-heading p {
-        font-size: 13px;
-        line-height: 1.55;
+        font-size: 12px;
+        line-height: 1.5;
     }
 
 
-    /* -------------------------
-       AI TOOL CARDS
-    ------------------------- */
+    /* =========================
+       TOOL CARDS
+    ========================= */
 
     #results-container,
     .tools-container,
@@ -3262,30 +3294,31 @@ body {
     .why-container,
     .recent-container {
         grid-template-columns: 1fr;
-        gap: 14px;
+        gap: 13px;
     }
 
     .tool-card {
         width: 100%;
         min-width: 0;
         min-height: auto;
-        padding: 17px;
-        border-radius: 16px;
+        padding: 15px;
+
+        border-radius: 15px;
     }
 
     .tool-card-top {
-        width: 100%;
         display: flex;
         align-items: flex-start;
-        gap: 10px;
+        gap: 9px;
     }
 
     .tool-icon {
-        width: 52px;
-        height: 52px;
-        min-width: 52px;
-        font-size: 27px;
-        border-radius: 13px;
+        width: 48px;
+        height: 48px;
+        min-width: 48px;
+
+        font-size: 24px;
+        border-radius: 12px;
     }
 
     .tool-main-info {
@@ -3294,166 +3327,169 @@ body {
     }
 
     .tool-main-info h3 {
-        font-size: 17px;
+        font-size: 16px;
         line-height: 1.25;
+
         word-break: break-word;
     }
 
     .tool-meta {
         display: flex;
         flex-wrap: wrap;
-        gap: 6px;
-        margin-top: 6px;
+        gap: 5px;
+        margin-top: 5px;
     }
 
     .tool-category,
     .tool-rating {
-        font-size: 11px;
+        font-size: 10px;
     }
 
     .favorite-btn {
-        width: 38px;
-        height: 38px;
-        min-width: 38px;
+        width: 35px;
+        height: 35px;
+        min-width: 35px;
         flex-shrink: 0;
-        border-radius: 10px;
-    }
 
-    .match-score {
-        margin-top: 12px;
+        border-radius: 9px;
     }
 
     .tool-card p {
-        font-size: 13px;
-        line-height: 1.55;
+        font-size: 12px;
+        line-height: 1.5;
     }
 
 
-    /* -------------------------
-       TOOL ACTION BUTTONS
-    ------------------------- */
+    /* =========================
+       TOOL BUTTONS
+    ========================= */
 
     .tool-actions {
         width: 100%;
+
         display: flex;
         flex-direction: column;
-        gap: 8px;
-        margin-top: 14px;
+
+        gap: 7px;
+        margin-top: 12px;
     }
 
     .tool-actions button,
     .tool-actions a {
         width: 100%;
         min-width: 0;
-        min-height: 44px;
-        font-size: 13px;
-        border-radius: 10px;
+        min-height: 42px;
+
+        font-size: 12px;
+        border-radius: 9px;
     }
 
 
-    /* -------------------------
+    /* =========================
        CATEGORY CARDS
-    ------------------------- */
+    ========================= */
 
     .category-card {
         width: 100%;
-        min-width: 0;
-        padding: 20px 16px;
-        border-radius: 15px;
+        padding: 17px 14px;
+        border-radius: 14px;
     }
 
     .category-icon {
-        font-size: 28px;
-        margin-bottom: 8px;
+        font-size: 26px;
+        margin-bottom: 7px;
     }
 
     .category-card h3 {
-        font-size: 17px;
-    }
-
-    .category-card p {
-        font-size: 12px;
-    }
-
-
-    /* -------------------------
-       WHY CARDS
-    ------------------------- */
-
-    .why-card {
-        width: 100%;
-        padding: 20px 16px;
-        border-radius: 15px;
-    }
-
-    .why-icon {
-        font-size: 28px;
-    }
-
-    .why-card h3 {
-        font-size: 17px;
-    }
-
-    .why-card p {
-        font-size: 13px;
-    }
-
-
-    /* -------------------------
-       RECENT TOOLS
-    ------------------------- */
-
-    .recent-heading {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .recent-card {
-        width: 100%;
-        padding: 16px;
-        border-radius: 15px;
-    }
-
-    .recent-logo {
-        width: 48px;
-        height: 48px;
-        min-width: 48px;
-    }
-
-    .recent-info h3 {
         font-size: 16px;
     }
 
-    .recent-info p {
+    .category-card p {
+        font-size: 11px;
+    }
+
+
+    /* =========================
+       WHY CARDS
+    ========================= */
+
+    .why-card {
+        width: 100%;
+        padding: 17px 14px;
+        border-radius: 14px;
+    }
+
+    .why-icon {
+        font-size: 26px;
+    }
+
+    .why-card h3 {
+        font-size: 16px;
+    }
+
+    .why-card p {
         font-size: 12px;
         line-height: 1.5;
     }
 
 
-    /* -------------------------
+    /* =========================
+       RECENT CARDS
+    ========================= */
+
+    .recent-heading {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .recent-card {
+        width: 100%;
+        padding: 15px;
+        border-radius: 14px;
+    }
+
+    .recent-logo {
+        width: 45px;
+        height: 45px;
+        min-width: 45px;
+    }
+
+    .recent-info h3 {
+        font-size: 15px;
+    }
+
+    .recent-info p {
+        font-size: 11px;
+        line-height: 1.5;
+    }
+
+
+    /* =========================
        ABOUT
-    ------------------------- */
+    ========================= */
 
     .about-content {
         width: 100%;
-        padding: 25px 18px;
-        gap: 22px;
+
+        padding: 23px 17px;
+
+        gap: 20px;
+
         grid-template-columns: 1fr;
     }
 
     .about-text h2 {
-        font-size: 24px;
+        font-size: 23px;
         line-height: 1.3;
     }
 
     .about-text p {
-        font-size: 13px;
+        font-size: 12px;
         line-height: 1.6;
     }
 
     .about-button {
-        display: inline-flex;
         width: 100%;
         justify-content: center;
         text-align: center;
@@ -3461,51 +3497,80 @@ body {
 
     .about-box {
         width: 100%;
-        padding: 22px 16px;
+        padding: 20px 15px;
     }
 
 
-    /* -------------------------
+    /* =========================
        FOOTER
-    ------------------------- */
+       ========================= */
 
     .footer-container {
-        width: calc(100% - 30px);
-        grid-template-columns: 1fr;
-        gap: 28px;
-        padding: 40px 0 30px;
+        width: calc(100% - 24px);
+
+        display: grid;
+
+        grid-template-columns: 1fr 1fr;
+
+        gap: 22px 15px;
+
+        padding: 38px 0 25px;
+    }
+
+    /* Brand across full width */
+    .footer-brand {
+        grid-column: 1 / -1;
+        text-align: center;
     }
 
     .footer-brand h2 {
-        font-size: 22px;
+        font-size: 20px;
     }
 
-    .footer-brand p,
-    .footer-links a {
-        font-size: 13px;
+    .footer-brand p {
+        max-width: 280px;
+        margin: 8px auto 0;
+
+        font-size: 11px;
+        line-height: 1.5;
+    }
+
+    .footer-links {
+        text-align: center;
     }
 
     .footer-links h3 {
-        font-size: 15px;
+        font-size: 13px;
+        margin-bottom: 8px;
+    }
+
+    .footer-links a {
+        font-size: 11px;
+        margin: 5px 0;
+    }
+
+    /* Follow Us full width */
+    .footer-links:last-child {
+        grid-column: 1 / -1;
     }
 
     .footer-bottom {
-        padding: 16px 14px;
+        padding: 13px 10px;
         text-align: center;
     }
 
     .footer-bottom p {
-        font-size: 11px;
+        font-size: 9px;
     }
 
 
-    /* -------------------------
-       TOOL DETAILS MODAL
-    ------------------------- */
+    /* =========================
+       MODALS
+    ========================= */
 
     .tool-modal,
     #comparison-modal {
-        padding: 10px !important;
+        padding: 8px !important;
     }
 
     .tool-modal-content,
@@ -3513,24 +3578,26 @@ body {
         width: 100% !important;
         max-width: 100% !important;
         max-height: 92vh !important;
-        padding: 20px 16px !important;
-        border-radius: 16px !important;
+
+        padding: 18px 14px !important;
+
+        border-radius: 15px !important;
+
         overflow-y: auto;
     }
 
     .tool-details-header {
-        padding-right: 36px;
+        padding-right: 32px;
     }
 
     .tool-details-header h2 {
-        font-size: 21px;
-        line-height: 1.3;
+        font-size: 20px;
     }
 
     .tool-details-actions {
         display: flex;
         flex-direction: column;
-        gap: 8px;
+        gap: 7px;
     }
 
     .tool-details-actions button,
@@ -3538,24 +3605,19 @@ body {
         width: 100%;
     }
 
-
-    /* -------------------------
-       COMPARISON
-    ------------------------- */
-
     .comparison-grid {
         grid-template-columns: 1fr;
-        gap: 12px;
+        gap: 10px;
     }
 
     .comparison-header h2 {
-        font-size: 21px;
+        font-size: 20px;
     }
 
     .comparison-footer {
         display: flex;
         flex-direction: column;
-        gap: 8px;
+        gap: 7px;
     }
 
     .add-more-btn,
@@ -3569,65 +3631,41 @@ body {
    VERY SMALL PHONES
    ========================================================= */
 
-@media (max-width: 480px) {
+@media (max-width: 360px) {
 
     .logo img {
-        width: 88px;
-        height: 44px;
+        width: 90px;
+        height: 45px;
     }
 
     .sign-button,
+    .logout-button,
     .get {
         height: 34px;
         padding: 0 9px;
         font-size: 10px;
     }
 
-    .hero {
-        padding-top: 34px;
-    }
-
     .text {
-        font-size: 28px;
+        font-size: 27px;
     }
 
     .description {
-        font-size: 13px;
-    }
-
-    .search-box {
-        width: calc(100% - 22px);
+        font-size: 12px;
     }
 
     .nav-link a {
-        padding: 6px 10px;
-        font-size: 11px;
+        padding: 5px 9px;
+        font-size: 10px;
     }
 
     .tool-card {
-        padding: 14px;
+        padding: 13px;
     }
 
     .tool-icon {
-        width: 48px;
-        height: 48px;
-        min-width: 48px;
-        font-size: 24px;
-    }
-
-    .tool-main-info h3 {
-        font-size: 16px;
-    }
-
-    .favorite-btn {
-        width: 34px;
-        height: 34px;
-        min-width: 34px;
-    }
-
-    .category-card,
-    .why-card,
-    .recent-card {
-        padding: 16px;
+        width: 45px;
+        height: 45px;
+        min-width: 45px;
     }
 }
